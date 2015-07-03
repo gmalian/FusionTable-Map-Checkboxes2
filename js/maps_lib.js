@@ -9,22 +9,22 @@
         this.searchRadius = options.searchRadius || 805; //in meters ~ 1/2 mile
 
         // the encrypted Table ID of your Fusion Table (found under File => About)
-        this.fusionTableId = options.fusionTableId || "",
+        this.fusionTableId = options.fusionTableId || "10hcaZmOVVTAgTwyCBkKOwKqjnohEWo3DMJ309osY",
 
         // Found at https://console.developers.google.com/
         // Important! this key is for demonstration purposes. please register your own.
-        this.googleApiKey = options.googleApiKey || "",
+        this.googleApiKey = options.googleApiKey || "AIzaSyASP4mKrhR2L-xYBsn3Csnxwkbiy1UlQgQ",
 
         // name of the location column in your Fusion Table.
         // NOTE: if your location column name has spaces in it, surround it with single quotes
         // example: locationColumn:     "'my location'",
-        this.locationColumn = options.locationColumn || "geometry";
+        this.locationColumn = options.locationColumn || "Address";
 
         // appends to all address searches if not present
-        this.locationScope = options.locationScope || "chicago";
+        this.locationScope = options.locationScope || "Tanzania";
 
         // zoom level when map is loaded (bigger is more zoomed in)
-        this.defaultZoom = options.defaultZoom || 11;
+        this.defaultZoom = options.defaultZoom || 6;
 
         // center that your map defaults to
         this.map_centroid = new google.maps.LatLng(options.map_center[0], options.map_center[1]);
@@ -155,13 +155,13 @@
         //-----custom filters-----
         //---MODIFY column header and values below to match your Google Fusion Table AND index.html
         //-- TEXTUAL OPTION to display legend and filter by non-numerical data in your table
-        var type_column = "'Program Type'";  // -- note use of single & double quotes for two-word column header
+        var type_column = "'Group'";  // -- note use of single & double quotes for two-word column header
         var tempWhereClause = [];
-        if ( $("#cbType1").is(':checked')) tempWhereClause.push("Preschool");
-        if ( $("#cbType2").is(':checked')) tempWhereClause.push("Pre-K Programs");
-        if ( $("#cbType3").is(':checked')) tempWhereClause.push("Home Care");
-        if ( $("#cbType4").is(':checked')) tempWhereClause.push("Elementary");
-        if ( $("#cbType5").is(':checked')) tempWhereClause.push("High School");
+        if ( $("#cbType1").is(':checked')) tempWhereClause.push("Game Reserve");
+        if ( $("#cbType2").is(':checked')) tempWhereClause.push("National Park");
+        if ( $("#cbType3").is(':checked')) tempWhereClause.push("Camp");
+        if ( $("#cbType4").is(':checked')) tempWhereClause.push("Lodge");
+        if ( $("#cbType5").is(':checked')) tempWhereClause.push("Hotel");
         self.whereClause += " AND " + type_column + " IN ('" + tempWhereClause.join("','") + "')";
 
         //-----end of custom filters-----
